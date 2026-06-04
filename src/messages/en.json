@@ -1,0 +1,65 @@
+{
+  "FIND": "Record found successfully",
+  "FIND_NO": "Record not found",
+  "FIND_ALL": "Records found successfully",
+  "FIND_ALL_NO": "No records found",
+  
+  "CREATED_SUCCESS": "Record created successfully",
+  "UPDATED_SUCCESS": "Record updated successfully",
+  "DELETED_SUCCESS": "Record deleted successfully",
+  "RESTORED_SUCCESS": "Record restored successfully",
+  
+  "FIELD_REQUIRED": "This field is required",
+  "FIELD_EMPTY": "This field cannot be empty",
+  "FIELD_TYPE": "Invalid data type for this field",
+  "FIELD_MIN_LENGTH": "The field must have at least {min} characters",
+  "FIELD_MAX_LENGTH": "The field must not exceed {max} characters",
+  "FIELD_INVALID_FORMAT": "The field format is invalid",
+  "FIELD_INVALID_EMAIL": "The email address is invalid",
+  "FIELD_INVALID_URL": "The URL is invalid",
+  "FIELD_INVALID_DATE": "The date is invalid",
+  "FIELD_INVALID_NUMBER": "The number is invalid",
+  "FIELD_MIN_VALUE": "The value must be greater than or equal to {min}",
+  "FIELD_MAX_VALUE": "The value must be less than or equal to {max}",
+  
+  "AUTH_SUCCESS": "Authentication successful",
+  "AUTH_FAILED": "Authentication failed",
+  "AUTH_TOKEN_EXPIRED": "The token has expired",
+  "AUTH_TOKEN_INVALID": "The token is invalid",
+  "AUTH_UNAUTHORIZED": "Unauthorized",
+  "AUTH_FORBIDDEN": "Access denied",
+  "AUTH_USER_NOT_FOUND": "User not found",
+  "AUTH_INVALID_CREDENTIALS": "Invalid credentials",
+  "AUTH_SESSION_EXPIRED": "Session has expired",
+  
+  "SERVER_ERROR": "Internal server error",
+  "SERVICE_UNAVAILABLE": "Service unavailable",
+  "TIMEOUT_ERROR": "Request timeout",
+  "RATE_LIMIT_EXCEEDED": "Rate limit exceeded",
+  
+  "DB_CONNECTION_ERROR": "Database connection error",
+  "DB_QUERY_ERROR": "Database query error",
+  "DB_TRANSACTION_ERROR": "Transaction error",
+  "DB_DUPLICATE_KEY": "Record already exists",
+  "DB_ERROR": "Database error",
+  
+  "EXT_SERVICE_ERROR": "External service error",
+  "EXT_SERVICE_UNAVAILABLE": "External service unavailable",
+  "EXT_SERVICE_TIMEOUT": "External service timeout",
+  
+  "SUCCESS": "Operation successful",
+  "ERROR": "An error occurred",
+  "BAD_REQUEST": "Bad request",
+  "VALIDATION_ERROR": "Validation error",
+  "NOT_FOUND": "Resource not found",
+  "CONFLICT": "Conflict with current resource state",
+  "UNPROCESSABLE_ENTITY": "Unable to process entity",
+  
+  "FILE_UPLOAD_SUCCESS": "File uploaded successfully",
+  "FILE_UPLOAD_ERROR": "Error uploading file",
+  "FILE_NOT_FOUND": "File not found",
+  "FILE_TYPE_NOT_ALLOWED": "File type not allowed",
+  "FILE_SIZE_EXCEEDED": "File size exceeds allowed limit",
+  
+  "CUSTOM_MESSAGE": "Custom message: {message}"
+}

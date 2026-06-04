@@ -1,0 +1,65 @@
+{
+  "FIND": "Registro encontrado correctamente",
+  "FIND_NO": "Registro no encontrado",
+  "FIND_ALL": "Registros encontrados correctamente",
+  "FIND_ALL_NO": "No se encontraron registros",
+  
+  "CREATED_SUCCESS": "Registro creado exitosamente",
+  "UPDATED_SUCCESS": "Registro actualizado exitosamente",
+  "DELETED_SUCCESS": "Registro eliminado exitosamente",
+  "RESTORED_SUCCESS": "Registro restaurado exitosamente",
+  
+  "FIELD_REQUIRED": "Este campo es requerido",
+  "FIELD_EMPTY": "Este campo no puede estar vacío",
+  "FIELD_TYPE": "Tipo de dato no válido para este campo",
+  "FIELD_MIN_LENGTH": "El campo debe tener al menos {min} caracteres",
+  "FIELD_MAX_LENGTH": "El campo no debe exceder {max} caracteres",
+  "FIELD_INVALID_FORMAT": "El formato del campo no es válido",
+  "FIELD_INVALID_EMAIL": "El correo electrónico no es válido",
+  "FIELD_INVALID_URL": "La URL no es válida",
+  "FIELD_INVALID_DATE": "La fecha no es válida",
+  "FIELD_INVALID_NUMBER": "El número no es válido",
+  "FIELD_MIN_VALUE": "El valor debe ser mayor o igual a {min}",
+  "FIELD_MAX_VALUE": "El valor debe ser menor o igual a {max}",
+  
+  "AUTH_SUCCESS": "Autenticación exitosa",
+  "AUTH_FAILED": "Error de autenticación",
+  "AUTH_TOKEN_EXPIRED": "El token ha expirado",
+  "AUTH_TOKEN_INVALID": "El token no es válido",
+  "AUTH_UNAUTHORIZED": "No autorizado",
+  "AUTH_FORBIDDEN": "Acceso denegado",
+  "AUTH_USER_NOT_FOUND": "Usuario no encontrado",
+  "AUTH_INVALID_CREDENTIALS": "Credenciales inválidas",
+  "AUTH_SESSION_EXPIRED": "La sesión ha expirado",
+  
+  "SERVER_ERROR": "Error interno del servidor",
+  "SERVICE_UNAVAILABLE": "Servicio no disponible",
+  "TIMEOUT_ERROR": "Tiempo de espera agotado",
+  "RATE_LIMIT_EXCEEDED": "Límite de peticiones excedido",
+  
+  "DB_CONNECTION_ERROR": "Error de conexión a la base de datos",
+  "DB_QUERY_ERROR": "Error en la consulta a la base de datos",
+  "DB_TRANSACTION_ERROR": "Error en la transacción",
+  "DB_DUPLICATE_KEY": "El registro ya existe",
+  "DB_ERROR": "Error de base de datos",
+  
+  "EXT_SERVICE_ERROR": "Error en servicio externo",
+  "EXT_SERVICE_UNAVAILABLE": "Servicio externo no disponible",
+  "EXT_SERVICE_TIMEOUT": "Tiempo de espera agotado en servicio externo",
+  
+  "SUCCESS": "Operación exitosa",
+  "ERROR": "Ha ocurrido un error",
+  "BAD_REQUEST": "Solicitud incorrecta",
+  "VALIDATION_ERROR": "Error de validación",
+  "NOT_FOUND": "Recurso no encontrado",
+  "CONFLICT": "Conflicto con el estado actual del recurso",
+  "UNPROCESSABLE_ENTITY": "No se puede procesar la entidad",
+  
+  "FILE_UPLOAD_SUCCESS": "Archivo cargado exitosamente",
+  "FILE_UPLOAD_ERROR": "Error al cargar el archivo",
+  "FILE_NOT_FOUND": "Archivo no encontrado",
+  "FILE_TYPE_NOT_ALLOWED": "Tipo de archivo no permitido",
+  "FILE_SIZE_EXCEEDED": "El tamaño del archivo excede el límite permitido",
+  
+  "CUSTOM_MESSAGE": "Mensaje personalizado: {message}"
+}
