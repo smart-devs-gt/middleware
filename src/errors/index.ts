@@ -1,7 +1,7 @@
 /**
  * Errores tipados, códigos de error y handler framework-agnostic.
  *
- * Migrado desde @smdv/logwise (ver docs/MS-MIDDLEWARE-MIGRATION.md).
+ * Migrado desde @smdv/logwise (ver docs/MIDDLEWARE-MIGRATION.md).
  */
 
 export { ERROR_CODES, ERROR_MESSAGE_KEYS, ErrorCode, ErrorMessageKey } from './error-codes'

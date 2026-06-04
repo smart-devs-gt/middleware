@@ -19,7 +19,7 @@ const fallback: MsLogger = {
  * Reemplaza app/Exceptions/Handler.ts en cada servicio:
  *
  *   import { logger } from '@smdv/logwise'
- *   import { ExceptionHandlerV5 } from '@smdv/ms-middleware'
+ *   import { ExceptionHandlerV5 } from '@smdv/middleware'
  *
  *   export default class ExceptionHandler extends ExceptionHandlerV5 {
  *     constructor() {

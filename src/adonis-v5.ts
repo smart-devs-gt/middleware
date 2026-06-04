@@ -16,13 +16,13 @@ const DEFAULT_MSG = 'Unauthorized'
  *
  * Registro en start/kernel.ts:
  *   Server.middleware.registerNamed({
- *     authorization: () => import('@smdv/ms-middleware/dist/adonis-v5'),
+ *     authorization: () => import('@smdv/middleware/dist/adonis-v5'),
  *   })
  *
  * Instanciación con jwt-verify:
  *   // start/kernel.ts
  *   import Env from '@ioc:Adonis/Core/Env'
- *   import { AuthorizationMiddleware } from '@smdv/ms-middleware'
+ *   import { AuthorizationMiddleware } from '@smdv/middleware'
  *   export const authMiddleware = new AuthorizationMiddleware({
  *     mode: 'jwt-verify',
  *     jwtKey: Env.get('JWT_KEY'),
@@ -46,14 +46,14 @@ export default class AuthorizationMiddleware {
         this.opts.jwtKey,
       )
       if (!result.ok) {
-        return response.unauthorized({ message: this.opts.unauthorizedMessage })
+        return response.status(401).send({ message: this.opts.unauthorizedMessage })
       }
       ;(request as any).authContext = result.ctx
     } else {
       // gateway-trust
       const ownerId = request.header('owner-id') as string | undefined
       if (!ownerId) {
-        return response.unauthorized({ message: this.opts.unauthorizedMessage })
+        return response.status(401).send({ message: this.opts.unauthorizedMessage })
       }
       ;(request as any).authContext = buildAuthContextFromHeaders(request.headers())
     }

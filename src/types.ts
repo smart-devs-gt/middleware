@@ -19,7 +19,7 @@ export interface AuthContext {
 /**
  * Interfaz mínima de logger compatible con @smdv/logwise.
  *
- * ms-middleware NO depende de logwise directamente — acepta cualquier
+ * middleware NO depende de logwise directamente — acepta cualquier
  * objeto que implemente estos tres métodos. La clase Logger de logwise
  * la satisface sin ningún cambio.
  *
@@ -73,7 +73,7 @@ export interface AuthMiddlewareOptions {
 /**
  * Códigos HTTP usados por las clases de error y los helpers de respuesta.
  *
- * Definido localmente para que ms-middleware no dependa de logwise.
+ * Definido localmente para que middleware no dependa de logwise.
  * `HttpStatusCode` (mismo enum) sigue exportándose desde @smdv/logwise
  * por retrocompatibilidad — ambos coinciden en valores.
  */
