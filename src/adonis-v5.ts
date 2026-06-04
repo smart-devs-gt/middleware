@@ -46,14 +46,14 @@ export default class AuthorizationMiddleware {
         this.opts.jwtKey,
       )
       if (!result.ok) {
-        return response.unauthorized({ message: this.opts.unauthorizedMessage })
+        return response.status(401).send({ message: this.opts.unauthorizedMessage })
       }
       ;(request as any).authContext = result.ctx
     } else {
       // gateway-trust
       const ownerId = request.header('owner-id') as string | undefined
       if (!ownerId) {
-        return response.unauthorized({ message: this.opts.unauthorizedMessage })
+        return response.status(401).send({ message: this.opts.unauthorizedMessage })
       }
       ;(request as any).authContext = buildAuthContextFromHeaders(request.headers())
     }
