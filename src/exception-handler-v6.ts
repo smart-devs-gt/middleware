@@ -29,7 +29,7 @@ const fallback: MsLogger = {
  * Reemplaza app/exceptions/handler.ts en cada servicio:
  *
  *   import { logger } from '@smdv/logwise'
- *   import { ExceptionHandlerV6 } from '@smdv/ms-middleware'
+ *   import { ExceptionHandlerV6 } from '@smdv/middleware'
  *   import app from '@adonisjs/core/services/app'
  *
  *   export default new ExceptionHandlerV6(!app.inProduction, logger)

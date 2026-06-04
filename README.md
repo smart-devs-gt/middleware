@@ -1,4 +1,4 @@
-# @smdv/ms-middleware
+# @smdv/middleware
 
 Estandarización de **autenticación**, **formato de respuesta** y **manejo de errores** para todos los microservicios Smart Sale.
 
@@ -45,7 +45,7 @@ Requiere agregar `JWT_KEY` al secreto de cada servicio en AWS Secrets Manager.
 ## Instalación
 
 ```bash
-npm install @smdv/ms-middleware
+npm install @smdv/middleware
 ```
 
 ## Uso
@@ -56,11 +56,11 @@ npm install @smdv/ms-middleware
 
 ```typescript
 // app/Middleware/Authorization.ts — modo gateway-trust (default)
-export { AuthorizationMiddleware as default } from '@smdv/ms-middleware'
+export { AuthorizationMiddleware as default } from '@smdv/middleware'
 
 // --- O con jwt-verify (defensa en profundidad) ---
 import Env from '@ioc:Adonis/Core/Env'
-import { AuthorizationMiddleware } from '@smdv/ms-middleware'
+import { AuthorizationMiddleware } from '@smdv/middleware'
 
 export default new AuthorizationMiddleware({
   mode: 'jwt-verify',
@@ -77,7 +77,7 @@ export default new AuthorizationMiddleware({
 ```typescript
 // contracts/request.ts
 import '@ioc:Adonis/Core/Request'
-import { AuthContext } from '@smdv/ms-middleware'
+import { AuthContext } from '@smdv/middleware'
 
 declare module '@ioc:Adonis/Core/Request' {
   interface RequestContract {
@@ -106,13 +106,13 @@ const { ownerId, userId, employeeId, fullUserName } = (request as any).authConte
 
 ```typescript
 // app/middleware/authorization_middleware.ts
-export { AuthorizationMiddlewareV6 as default } from '@smdv/ms-middleware'
+export { AuthorizationMiddlewareV6 as default } from '@smdv/middleware'
 ```
 
 Acceso en handlers:
 
 ```typescript
-import { AuthContext } from '@smdv/ms-middleware'
+import { AuthContext } from '@smdv/middleware'
 
 async index({ request }: HttpContext) {
   const { ownerId } = (request as any).authContext as AuthContext
@@ -125,7 +125,7 @@ async index({ request }: HttpContext) {
 
 ```typescript
 // src/auth/auth.guard.ts
-export { AuthGuard } from '@smdv/ms-middleware'
+export { AuthGuard } from '@smdv/middleware'
 
 // Uso en controlador
 @UseGuards(AuthGuard)
@@ -163,7 +163,7 @@ Cuando un servicio llama a otro, debe propagar **todos** los headers de autentic
 
 ```typescript
 // helpers/forwardAuthHeaders.ts
-import { AuthContext } from '@smdv/ms-middleware'
+import { AuthContext } from '@smdv/middleware'
 
 export function forwardAuthHeaders(ctx: AuthContext): Record<string, string> {
   return {
@@ -214,7 +214,7 @@ import {
   okResponse, createdResponse, updatedResponse, deletedResponse,
   badRequestResponse, notFoundResponse, unprocessableResponse,
   unauthorizedResponse, internalErrorResponse,
-} from '@smdv/ms-middleware'
+} from '@smdv/middleware'
 
 // En un manager/controller AdonisJS
 async index({ response }: HttpContext) {
@@ -258,7 +258,7 @@ El `ExceptionHandler` es el equivalente AdonisJS al middleware de error de Expre
 
 ```typescript
 // app/Exceptions/Handler.ts
-import { ExceptionHandlerV5 } from '@smdv/ms-middleware'
+import { ExceptionHandlerV5 } from '@smdv/middleware'
 import { logger } from '@smdv/logwise'
 
 export default class ExceptionHandler extends ExceptionHandlerV5 {
@@ -272,7 +272,7 @@ export default class ExceptionHandler extends ExceptionHandlerV5 {
 
 ```typescript
 // app/exceptions/handler.ts
-import { ExceptionHandlerV6 } from '@smdv/ms-middleware'
+import { ExceptionHandlerV6 } from '@smdv/middleware'
 import { logger } from '@smdv/logwise'
 import app from '@adonisjs/core/services/app'
 
@@ -298,7 +298,7 @@ export default new ExceptionHandlerV6(!app.inProduction, logger)
 
 ## Errores tipados y respuestas (ex-logwise)
 
-Migrado desde `@smdv/logwise` para separar **logging** (logwise) de **formato HTTP** (ms-middleware). Ver [docs/MS-MIDDLEWARE-MIGRATION.md](../../docs/MS-MIDDLEWARE-MIGRATION.md).
+Migrado desde `@smdv/logwise` para separar **logging** (logwise) de **formato HTTP** (middleware). Ver [docs/MIDDLEWARE-MIGRATION.md](../../docs/MIDDLEWARE-MIGRATION.md).
 
 ### Clases de error tipadas
 
@@ -316,7 +316,7 @@ import {
   ServiceUnavailableError,
   DatabaseError,
   ExternalServiceError,
-} from '@smdv/ms-middleware'
+} from '@smdv/middleware'
 
 // En un Manager — lanzar y dejar que ExceptionHandler responda
 if (!owner) throw new NotFoundError('Cliente no encontrado')
@@ -331,7 +331,7 @@ Cada clase trae `statusCode` y `code` predefinidos (`ERROR_CODES`) y se serializ
 Útil cuando necesitas convertir un error a `{ status, body }` sin pasar por `ExceptionHandler` (controllers que capturan localmente, lambdas, etc.):
 
 ```typescript
-import { handleError } from '@smdv/ms-middleware'
+import { handleError } from '@smdv/middleware'
 import { logger } from '@smdv/logwise'
 
 try {
@@ -354,7 +354,7 @@ import {
   ERROR_CODES,
   Messages, getMessage,
   HttpStatus, SupportedLang,
-} from '@smdv/ms-middleware'
+} from '@smdv/middleware'
 ```
 
 `getMessage(SupportedLang.ES, 'NOT_FOUND')` → mensaje localizado (es/en).
@@ -362,7 +362,7 @@ import {
 ### Helpers Express (opcional)
 
 ```typescript
-import { createErrorHandler, asyncHandler, notFoundHandler } from '@smdv/ms-middleware'
+import { createErrorHandler, asyncHandler, notFoundHandler } from '@smdv/middleware'
 
 app.use(notFoundHandler())
 app.use(createErrorHandler({ logger }))

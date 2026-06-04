@@ -1,8 +1,8 @@
 /**
  * Mensajes estándar de respuesta API con soporte de internacionalización.
  *
- * Antes vivía en @smdv/logwise. Migrado a ms-middleware como parte de
- * la separación logs / formato HTTP (ver docs/MS-MIDDLEWARE-MIGRATION.md).
+ * Antes vivía en @smdv/logwise. Migrado a middleware como parte de
+ * la separación logs / formato HTTP (ver docs/MIDDLEWARE-MIGRATION.md).
  */
 
 import { SupportedLang } from '../types'

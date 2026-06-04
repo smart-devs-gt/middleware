@@ -1,8 +1,8 @@
 /**
  * Constantes y helpers HTTP.
  *
- * Antes vivía en @smdv/logwise. Migrado a ms-middleware como parte de
- * la separación logs / formato HTTP (ver docs/MS-MIDDLEWARE-MIGRATION.md).
+ * Antes vivía en @smdv/logwise. Migrado a middleware como parte de
+ * la separación logs / formato HTTP (ver docs/MIDDLEWARE-MIGRATION.md).
  */
 
 import { HttpStatus } from '../types'
