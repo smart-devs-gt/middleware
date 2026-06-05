@@ -59,7 +59,10 @@ export class ExceptionHandlerV5 {
 
     // 5xx → error, 4xx → warn (errores de cliente son esperados)
     if (status >= 500) {
-      this.log.error(error.message ?? 'Unhandled exception', undefined, meta)
+      this.log.error(error.message ?? 'Unhandled exception', undefined, {
+        ...meta,
+        ...(error.stack ? { stack: error.stack } : {}),
+      })
     } else {
       this.log.warn(error.message ?? 'Client error', undefined, meta)
     }
@@ -97,9 +100,7 @@ export class ExceptionHandlerV5 {
     }
 
     return response.internalServerError(
-      internalErrorResponse(
-        this.debug ? (error.message ?? 'Error interno') : 'Error interno del servidor'
-      )
+      internalErrorResponse('Error interno del servidor')
     )
   }
 }
