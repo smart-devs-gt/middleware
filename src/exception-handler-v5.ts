@@ -43,6 +43,10 @@ export class ExceptionHandlerV5 {
     this.log = logger ?? fallback
   }
 
+  // AdonisJS v5 calls report() before handle(). Logging is done in handle(),
+  // so this is intentionally a no-op to avoid the "Missing method report" FATAL.
+  public report(_error: any, _ctx: any): void {}
+
   public async handle(error: any, { response }: any) {
     const status: number = error instanceof ApiError
       ? error.statusCode
