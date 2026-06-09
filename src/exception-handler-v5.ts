@@ -47,13 +47,16 @@ export class ExceptionHandlerV5 {
   // so this is intentionally a no-op to avoid the "Missing method report" FATAL.
   public report(_error: any, _ctx: any): void {}
 
-  public async handle(error: any, { response }: any) {
+  public async handle(error: any, ctx: any) {
+    const { response, request } = ctx
     const status: number = error instanceof ApiError
       ? error.statusCode
       : (error.status ?? error.statusCode ?? 500)
     const meta = {
       status,
       code: error instanceof ApiError ? error.code : error.code,
+      method: request?.method?.(),
+      url: request?.url?.(),
       ...(this.debug && error.stack ? { stack: error.stack } : {}),
     }
 
@@ -89,13 +92,26 @@ export class ExceptionHandlerV5 {
       return response.notFound(notFoundResponse('Recurso no encontrado'))
     }
 
+    if (error.code === 'E_ROUTE_NOT_FOUND') {
+      return response.notFound(notFoundResponse('Recurso no encontrado'))
+    }
+
+    if (error.code === 'E_METHOD_NOT_ALLOWED') {
+      return response.status(405).json(
+        badRequestResponse('Método no permitido para este recurso')
+      )
+    }
+
     if (error.code === 'E_UNAUTHORIZED_ACCESS' || status === 401) {
       return response.unauthorized(unauthorizedResponse())
     }
 
     if (status >= 400 && status < 500) {
+      const clientMessage = this.debug
+        ? (error.message ?? 'Solicitud inválida')
+        : 'Solicitud inválida'
       return response.status(status).json(
-        badRequestResponse(error.message ?? 'Solicitud inválida', error.errors)
+        badRequestResponse(clientMessage, error.errors)
       )
     }
 
