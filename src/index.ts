@@ -7,6 +7,15 @@ export { default as AuthorizationMiddleware }   from './adonis-v5'
 export { default as AuthorizationMiddlewareV6 } from './adonis-v6'
 export { AuthGuard }                            from './nestjs'
 
+// Contexto de log por request (ownerId/tenant). Compartido con @smdv/logwise.
+export {
+  runWithLogContext,
+  getLogContext,
+  logContextFromAuth,
+  logContextMiddleware,
+  LogContext,
+} from './log-context'
+
 // Response helpers
 export {
   ApiResponse,
