@@ -1,0 +1,89 @@
+# catalog.yaml — middleware
+# Engineering Intelligence & Release Governance Platform
+# Schema version: 1.1 | Last updated: 2026-06-11
+
+app_id: middleware
+name: Middleware Library
+description: >
+  Librería npm de estandarización de autenticación, formato de respuesta
+  y manejo de errores para todos los microservicios Node.js (AdonisJS v5/v6,
+  NestJS). Publicada como @smdv/middleware. Implementa dos modos de auth:
+  gateway-trust (default, headers verificados por el gateway) y jwt-verify
+  (defensa en profundidad, re-verifica JWT en el servicio). Todos los MS
+  activos migraron a v1.1.4 en Jun 2026.
+type: lib
+status: active
+
+ownership:
+  squad: gateway-security
+  owner_team: core
+  jira_component: middleware
+
+stack:
+  framework: node
+  runtime: node
+  language: typescript
+  version:
+    runtime: "20.x"
+    framework: null
+
+repository:
+  provider: codecommit
+  name: middleware
+  branch_default: develop
+  workspace_path: utilities/middleware
+
+deployment:
+  type: npm
+  package_name: "@smdv/middleware"
+  package_version: "1.1.4"
+  pipeline_name: middleware-pipeline
+
+communication:
+  http_clients: []
+  kafka_producer: []
+  kafka_consumer: []
+
+  shared:
+    mysql: false
+    redis: false
+    kafka: false
+    dynamodb: false
+
+health_profile:
+  last_reviewed: "2026-06-11"
+  reviewer: jhernandez
+
+  technical_debt:
+    level: low
+    notes: >
+      v1.1.4 estable — todos los MS activos completaron migración en Jun 2026.
+      Soporta AdonisJS v5, v6 y NestJS. Dependency principal: jsonwebtoken.
+      Modo jwt-verify recomendado para ms-core-payments y ms-sale-orders
+      (servicios críticos). Ver docs/MIDDLEWARE.md y docs/MIDDLEWARE-MIGRATION.md.
+
+  architecture:
+    has_defined_arch: true
+    follows_patterns: full
+    patterns_missing: []
+
+  policy_compliance:
+    secrets_manager: false
+    no_hardcoded_env: true
+    auth_pattern: false
+    conventional_commits: true
+
+  test_coverage:
+    current_pct: 0
+    new_code_target_pct: 90
+    has_unit_tests: false
+    has_integration_tests: false
+    notes: >
+      Librería de seguridad transversal sin suite de tests formal.
+      Un bug aquí afecta la autenticación de todos los microservicios
+      simultáneamente — cobertura es prioridad crítica.
+
+  documentation:
+    has_readme: true
+    has_claude_md: false
+    has_adr: false

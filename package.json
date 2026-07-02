@@ -1,6 +1,6 @@
 {
   "name": "@smdv/middleware",
-  "version": "1.1.4",
+  "version": "1.2.0",
   "description": "Middleware de autenticación estandarizado para microservicios Smart Sale (AdonisJS v5/v6, NestJS)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
