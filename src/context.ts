@@ -25,7 +25,15 @@ export function buildAuthContextFromHeaders(headers: RawHeaders): AuthContext {
     fullUserName: str(headers, 'full-user-name'),
     ownerName:    str(headers, 'owner-name'),
     roleName:     str(headers, 'role-name'),
+    planCode:     str(headers, 'plan-code'),
+    planStatus:   str(headers, 'plan-status'),
+    modules:      parseModules(str(headers, 'plan-modules')),
   }
+}
+
+/** Los módulos viajan como CSV en el header `plan-modules` (inyectado por el gateway). */
+function parseModules(csv: string): string[] {
+  return csv ? csv.split(',').map((m) => m.trim()).filter(Boolean) : []
 }
 
 export type JwtVerifyResult =
@@ -50,7 +58,8 @@ export function buildAuthContextFromJwt(authHeader: string | undefined, jwtKey: 
   const token = authHeader.slice(7) // quita "Bearer "
 
   try {
-    const payload = verify(token, jwtKey) as Record<string, string>
+    const payload = verify(token, jwtKey) as Record<string, any>
+    const plan = (payload['plan'] ?? {}) as { code?: string; status?: string; modules?: string[] }
     return {
       ok: true,
       ctx: {
@@ -62,6 +71,9 @@ export function buildAuthContextFromJwt(authHeader: string | undefined, jwtKey: 
         fullUserName: payload['fullUserName']  ?? '',
         ownerName:    payload['ownerName']     ?? '',
         roleName:     payload['roleName']      ?? '',
+        planCode:     plan.code                ?? '',
+        planStatus:   plan.status              ?? '',
+        modules:      Array.isArray(plan.modules) ? plan.modules : [],
       },
     }
   } catch (err) {
