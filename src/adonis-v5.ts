@@ -1,5 +1,6 @@
 import { buildAuthContextFromHeaders, buildAuthContextFromJwt } from './context'
 import { AuthMiddlewareOptions } from './types'
+import { runWithLogContext, logContextFromAuth } from './log-context'
 
 const DEFAULT_MSG = 'Unauthorized'
 
@@ -58,6 +59,9 @@ export default class AuthorizationMiddleware {
       ;(request as any).authContext = buildAuthContextFromHeaders(request.headers())
     }
 
-    await next()
+    // Abre el contexto de log con la identidad del tenant para que logwise
+    // incluya ownerId/userId/enterpriseId en cada línea del request.
+    const ctx = (request as any).authContext
+    await runWithLogContext(logContextFromAuth(ctx), () => next())
   }
 }

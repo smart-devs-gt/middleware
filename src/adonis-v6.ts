@@ -1,5 +1,6 @@
 import { buildAuthContextFromHeaders, buildAuthContextFromJwt } from './context'
 import { AuthMiddlewareOptions } from './types'
+import { runWithLogContext, logContextFromAuth } from './log-context'
 
 type AdonisHttpContext = {
   request: {
@@ -46,6 +47,8 @@ export default class AuthorizationMiddlewareV6 {
       ;(request as any).authContext = buildAuthContextFromHeaders(request.headers())
     }
 
-    await next()
+    // Abre el contexto de log con la identidad del tenant (ver log-context.ts).
+    const ctx = (request as any).authContext
+    await runWithLogContext(logContextFromAuth(ctx), () => next())
   }
 }

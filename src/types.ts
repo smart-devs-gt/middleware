@@ -14,6 +14,10 @@ export interface AuthContext {
   fullUserName: string
   ownerName: string
   roleName: string
+  // Entitlements del plan del tenant (defensa en profundidad backend). Ver ADR-014.
+  planCode: string
+  planStatus: string
+  modules: string[]
 }
 
 /**
