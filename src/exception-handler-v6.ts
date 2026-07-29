@@ -30,13 +30,26 @@ const fallback: MsLogger = {
 /**
  * Exception handler para AdonisJS v6.
  *
- * Reemplaza app/exceptions/handler.ts en cada servicio:
+ * Reemplaza app/exceptions/handler.ts en cada servicio. Se exporta una
+ * SUBCLASE, no una instancia: `server.errorHandler()` resuelve el módulo con
+ * `container.make(moduleExports.default)`, que necesita un constructor —
+ * exportar `new ExceptionHandlerV6(...)` revienta al bootear.
  *
- *   import { logger } from '@smdv/logwise'
  *   import { ExceptionHandlerV6 } from '@smdv/middleware'
- *   import app from '@adonisjs/core/services/app'
+ *   import logger from '#services/logger'
  *
- *   export default new ExceptionHandlerV6(!app.inProduction, logger)
+ *   export default class HttpExceptionHandler extends ExceptionHandlerV6 {
+ *     constructor() {
+ *       super(false, logger)
+ *     }
+ *   }
+ *
+ * `debug` va en `false` fijo, NO en `!app.inProduction`: los ambientes de
+ * desarrollo corren con `NODE_ENV=development`, y con debug encendido las
+ * ramas de abajo devuelven `error.message` al cliente. En un error de Lucid ese
+ * mensaje es la query completa —con el `owner_id` del tenant y el nombre del
+ * schema—, así que el flag decide si el SQL se filtra al navegador. El detalle
+ * se lee en CloudWatch, no en la respuesta.
  *
  * Ver ExceptionHandlerV5 para documentación completa.
  */
